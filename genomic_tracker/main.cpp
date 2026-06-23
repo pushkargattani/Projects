@@ -7,32 +7,34 @@
 #include <unordered_map>
 #include <queue>
 #include <chrono>
+#include "patient.h"
 #include "kmp.h"
 #include "rabin_karp.h"
+#include "db.h"
 using namespace std;
 
 
-// ═══════════════════════════════════════
-// PATIENT STRUCT
-// ═══════════════════════════════════════
-struct Patient {
-    string id;
-    int age;
-    string dna;
+// // ═══════════════════════════════════════
+// // PATIENT STRUCT
+// // ═══════════════════════════════════════
+// struct Patient {
+//     string id;
+//     int age;
+//     string dna;
 
-    // KMP results
-    int totalMutations;
-    map<string, vector<int>> mutationMap;
+//     // KMP results
+//     int totalMutations;
+//     map<string, vector<int>> mutationMap;
 
-    // Rabin-Karp results
-    map<string, vector<int>> rkMutationMap;
-    int rkTotalMutations;
+//     // Rabin-Karp results
+//     map<string, vector<int>> rkMutationMap;
+//     int rkTotalMutations;
 
-    // statistics
-    int uniqueMutations;
-    double mutationDensity;
-    double riskScore;
-};
+//     // statistics
+//     int uniqueMutations;
+//     double mutationDensity;
+//     double riskScore;
+// };
 
 
 // ═══════════════════════════════════════
@@ -261,6 +263,8 @@ int main() {
                  ? "YES" : "NO")
              << "\n";
     }
+
+    insertToMySQL(patients, freqMap);
 
     return 0;
 }
